@@ -2,7 +2,7 @@ import java.util.List;
 
 public class RelatorioConsultas {
 
-    // Variáveis para guardar contagem e subtotais
+    // ========== VARIAVEIS DE QUANTIDADE E TOTAIS ===========
     private int qtdPresencial = 0;
     private double totalPresencial = 0;
 
@@ -12,7 +12,8 @@ public class RelatorioConsultas {
     private int qtdDomiciliar = 0;
     private double totalDomiciliar = 0;
 
-    // ========== MÉTODOS PARA RECEBER OS VALORES =========
+
+    // ========== MÉTODOS DE SOMA PARA RECEBER OS VALORES DE CADA TIPO DE CONSULTA ==========
     public void somarPresencial(double valor) 
     {
         this.qtdPresencial++;
@@ -34,18 +35,19 @@ public class RelatorioConsultas {
     // ========== LÓGICA DO RELATÓRIO ==========
     public void gerarRelatorioConsultas(List<Consulta> consultas) // O relatório é gerado a partir da lista geral chamada "consultas".
     {
-        // Para cada consulta do dia, o próprio objeto sabe onde deve guardar seu valor no fechamento
+        // Percorre cada consulta da lista
         for (Consulta c : consultas)  
         {
-            c.contabilizarNoFechamento(this); // O polimorfismo resolve tudo sozinho
+            // Cada consulta sabe onde se registrar no relatorio.
+            c.contabilizarNoFechamento(this); 
         }
 
-        // ========== Cálculos finais para o relatório ==========
+        // ========== CÁLCULOS FINAIS PARA O RELATÓRIO ==========
         int totalConsultas = qtdPresencial + qtdTeleconsulta + qtdDomiciliar;
         double valorGeral = totalPresencial + totalTeleconsulta + totalDomiciliar;
 
-        // ========== Exibição do relatório organizado ===========
-        System.out.println("\n========== RELATÓRIO GERENCIAL DO DIA ==========");
+        // ========== EXIBIÇÃO DO RELATÓRIO ORGANIZADO ===========
+        System.out.println("\n========== RELATÓRIO DAS CONSULTAS DO DIA ==========");
         System.out.printf("PRESENCIAL   | Qtd: %d | Subtotal: R$ %.2f%n", qtdPresencial, totalPresencial);
         System.out.printf("TELECONSULTA | Qtd: %d | Subtotal: R$ %.2f%n", qtdTeleconsulta, totalTeleconsulta);
         System.out.printf("DOMICILIAR   | Qtd: %d | Subtotal: R$ %.2f%n", qtdDomiciliar, totalDomiciliar);

@@ -4,7 +4,8 @@ public class ConsultaDomiciliar extends Consulta {
     private String endereco;
 
     // ========= CONSTRUTOR ==========
-    public ConsultaDomiciliar(String paciente, double valor, String endereco) {
+    public ConsultaDomiciliar(String paciente, double valor, String endereco) 
+    {
         super(paciente, valor);
         this.endereco = endereco;
     }
@@ -13,19 +14,20 @@ public class ConsultaDomiciliar extends Consulta {
     public String getEndereco() { return endereco; }
     public void setEndereco(String endereco) { this.endereco = endereco; }
 
-    // ========= Retorna o tipo específico da consulta, que é "Domiciliar" ==========
+    // Retorna o tipo específico da consulta, que é Domiciliar
     @Override
     public String getTipo() { return "Domiciliar"; }
 
-    // ========== MÉTODOS ==========
+    // ========== MÉTODO ABSTRATO DE MENSAGEM DE CONFIRMAÇÃO ==========
     @Override
-    public void confirmar() {
+    public void confirmar() 
+    {
         System.out.println("Consulta Domiciliar aprovada!");
         System.out.println("Endereço: " + getEndereco().toUpperCase());
         System.out.println("O médico chegará em até 1 hora.\n");
     }
 
-    // Polimorfismo: O objeto sabe a própria gaveta onde deve guardar o valor
+    // Pega o valor da consulta domiciliar e joga ela no relatorio na soma das consultas domiciliares.
     @Override
     public void contabilizarNoFechamento(RelatorioConsultas relatorio) 
     {

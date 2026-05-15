@@ -6,7 +6,8 @@ public abstract class Consulta {
     private String tipo;
 
     // ========== CONSTRUTOR ==========
-    public Consulta(String paciente, double valor) {
+    public Consulta(String paciente, double valor) 
+    {
         this.paciente = paciente;
         this.valor = valor;
     }
@@ -18,7 +19,7 @@ public abstract class Consulta {
     public double getValor() { return valor; }
     public void setValor(double valor) { this.valor = valor; }
 
-    // Definir getTipo como abstrato para cada subclasse implementar seu próprio tipo.
+    // Definir getTipo como abstrato para cada subclasse implementar seu próprio TIPO.
     public abstract String getTipo();
     public void setTipo(String tipo) { this.tipo = tipo; }
 
@@ -26,7 +27,7 @@ public abstract class Consulta {
     public abstract void confirmar();
     
     // ========== MÉTODO ABSTRATO PARA CONTABILIZAÇÃO NO RELATORIO DAS CONSULTAS ==========
-    public abstract void contabilizarNoFechamento(RelatorioConsultas relatorio);
+    public abstract void contabilizarNoFechamento(RelatorioConsultas relatorio); // Cada subclasse é obrigada a usar o metodo
 
     // ========= METODO PARA EXIBIR ==========
     public void exibirAgendamento() {
@@ -34,6 +35,7 @@ public abstract class Consulta {
         confirmar();
     }
 
+    // ========== METODO PARA APLICAR DESCONTO ===========
     public void aplicarDesconto(double percentual) 
     {
         if (percentual < 0 || percentual > 100) 
@@ -42,11 +44,13 @@ public abstract class Consulta {
         } 
         else 
         {
+            // Se for um percentual valido, pega o valor e multiplica ele pelo percentual / 100.
             double valorDoDesconto = getValor() * (percentual / 100);
             setValor(getValor() - valorDoDesconto);
         }
     }
 
+    // ========= SOBREPOSIÇÃO ==========
     @Override
     public String toString() 
     {

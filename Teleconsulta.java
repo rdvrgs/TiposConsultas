@@ -1,5 +1,5 @@
+// biblioteca usada para gerar sequencia de letras aleatorias
 import java.util.UUID;
-
 public class Teleconsulta extends Consulta {
 
     // ========== ATRIBUTOS ==========
@@ -9,7 +9,7 @@ public class Teleconsulta extends Consulta {
     public Teleconsulta(String paciente, double valor) 
     {
         super(paciente, valor);
-        // Gera o link no construtor para nunca ficar null
+        // Gera um link unico automaticamente para nunca ficar vazio
         this.linkAcesso = "https://consultasrichard.com/" + UUID.randomUUID().toString().substring(0, 8);
     }
     
@@ -17,24 +17,27 @@ public class Teleconsulta extends Consulta {
     public String getLinkAcesso() { return linkAcesso; }
     public void setLinkAcesso(String linkAcesso) { this.linkAcesso = linkAcesso; }
 
-    // Retorna o tipo específico da consulta, que é "Teleconsulta"
+    // Retorna o tipo específico da consulta, que é Teleconsulta
     @Override
     public String getTipo() { return "Teleconsulta"; }
 
-    // ======== MÉTODOS ========
+    // ======== MÉTODOS ABSTRATO DE MENSAGEM DE CONFIRMAÇÃO ========
     @Override
-    public void confirmar() {
-        System.out.println("Link de acesso: " + this.linkAcesso);
+    public void confirmar() 
+    {
+        // Exibe o link de acesso gerado para a teleconsulta
+        System.out.println("Link de acesso: " + getLinkAcesso());
         System.out.println("É recomendado entrar no link 5 minutos antes do combinado.\n");
     }
 
-    // Polimorfismo: O objeto sabe a própria gaveta onde deve guardar o valor
+    // Pega o valor da consulta online e joga ela no relatorio na soma das teleconsultas.
     @Override
     public void contabilizarNoFechamento(RelatorioConsultas relatorio)
     {
         relatorio.somarTeleconsulta(this.getValor());
     }
 
+    // Define o objeto Teleconsulta como um texto, formatando ele.
     @Override
     public String toString() {
         return getPaciente() + " | R$" + String.format("%.2f", getValor()) + " | Link: " + linkAcesso;
