@@ -1,5 +1,6 @@
 // biblioteca usada para gerar sequencia de letras aleatorias
 import java.util.UUID;
+
 public class Teleconsulta extends Consulta {
 
     // ========== ATRIBUTOS ==========

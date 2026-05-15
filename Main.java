@@ -1,6 +1,7 @@
 // listas
 import java.util.ArrayList;
 import java.util.List;
+
 public class Main {
     public static void main(String[] args) {
         
@@ -10,6 +11,7 @@ public class Main {
         // ========= CRIAÇÃO DE EXEMPLO DAS CONSULTAS DO DIA ==========
         consultas.add(new Presencial("Richard Vargas", 150.0, "Sala 1"));
         consultas.add(new Presencial("Joao Silva", 200.0, "Sala 2"));
+        consultas.add(new Presencial("Rafael Pereira", 180.0, "Sala 3"));
         
         consultas.add(new Teleconsulta("Jorge Mendes", 100.0)); 
         consultas.add(new Teleconsulta("Roberto Santos", 150.0));
